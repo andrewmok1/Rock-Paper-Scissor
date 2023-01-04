@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Rock Paper Scissor</title>
   <link rel="stylesheet" href="style.css">
-  
 </head>
+
 <body>
-    <script src = "script.js"></script>
-    <h1>A CLASSIC GAME</h1>
+  <div class="header-container">
+    <div class="header">Rock Paper Scissors!</div>
+  </div>
+
+  <div class="subtext-container">
+    <div class="subtext">First to Reach 5 Points Win! Each Round Won is 1 Point.</div>
+  </div>
+    
+  <div class="results-container">
+    <div class="results"><strong>Throw Your Hand!</strong></div>
+  </div>
+
+  <div class="scoreBoard">
+    <div id="player-label" class="badge">You</div>
+    <div id="computer-label" class="badge">Computer</div>
+    <span id="playerScore">0</span>:<span id="computerScore">0</span>
+  </div>
+
+  <div class="card-container">
+    <div class="card"><h2>Choose your Hand!</h2>
+        <div><button id="Rock"></button></div>
+        <div><button id="Paper"></button></div>
+        <div><button id="Scissor"></button></div>
+    </div>
+      
+    <div class="card"><h2>Computer Choice!</h2>
+      <div><button id="c-Rock"></button></div>
+      <div><button id="c-Paper"></button></div>
+      <div><button id="c-Scissor"></button></div>
+    </div>
+  </div>
+
+  <div class="start-container" id="startmodalEl">
+    <div><button class="start-button" id="startbuttonEl">START</button></div>
+  </div>
+
+  <div class="gameover-container" id="modalEl">
+    <div class="gameover-text">Game Over</div>
+    <div class="endgame-result" id="modalscoreEl">Result</div>
+    <div><button class="restart-button" id="restartbuttonEl">Play Again?</button></div>
+  </div>
+
+  <script src="script.js" charset="utf-8"></script>
 </body>
 </html>
+
+

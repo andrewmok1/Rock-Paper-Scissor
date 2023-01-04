@@ -1,73 +1,131 @@
+//Variables for game
 let playerScore = 0;
 let computerScore = 0;
-const gameobjects = ["rock", "paper", "scissor"];
+let playerScore_span = document.getElementById("playerScore");
+let computerScore_span = document.getElementById("computerScore");
+const scoreBoard_div = document.querySelector(".scoreBoard");
+let results_div = document.querySelector(".results");
+const rock_div = document.getElementById("Rock");
+const paper_div = document.getElementById("Paper");
+const scissor_div = document.getElementById("Scissor");
+const gameobjects = ["c-Rock", "c-Paper", "c-Scissor"];
 
-//Players will be prompted to type rock, paper, or scissor. Input was made to be case-insenstive and if rock, paper, or scissor are typed incorrectly, it will prompt user to type it correctly
+//Variables for start screen
+const startmodalEl = document.getElementById("startmodalEl");
+const startbuttonEl = document.getElementById("startbuttonEl");
+
+//Variables for game over screen
+const modalEl = document.getElementById("modalEl");
+const modalscoreEl = document.getElementById("modalscoreEl");
+const restartbuttonEl = document.getElementById("restartbuttonEl");
+
+//Button function for player choice
 function getPlayerChoice () {
-    let input = prompt("Type 'rock', 'paper', or 'scissor'!")
-    
-    input = input.toLowerCase();
+    rock_div.addEventListener('click', function() {
+        playRound("Rock");
+    })
 
-    while (input != "rock" && input != "paper" && input != "scissor") {
-    input = prompt ("Please type 'rock', 'paper', or 'scissor' correctly!");
-    }
-    return input;
-} 
+    paper_div.addEventListener('click', function() {
+        playRound("Paper");
+    })
+
+    scissor_div.addEventListener('click', function() {
+        playRound("Scissor");
+    })
+}
 
 //Computer will return a random word from the variable gameobjects
 function getComputerChoice () {
     return gameobjects[Math.floor(Math.random()*gameobjects.length)];
 }
 
-//Round Rules (FYI: Always have a variable = to the OUTPUT of the function)
-function playRound() {
-    console.log ("Round is Starting!");
-    let playerchoice = getPlayerChoice();
-    let computerchoice = getComputerChoice();
-    console.log ("Player Chose", playerchoice);
-    console.log ("Computer Chose", computerchoice);
-    if (playerchoice === computerchoice) { 
-        return "Tie!" 
+//Take player choice from getPlayerChoice function and compare it to computer's choice
+function playRound(playerChoice) {
+    const computerChoice = getComputerChoice();
+    
+    if (playerChoice === computerChoice) { 
+        return tie();
       }
-        else if (playerchoice === "rock" && computerchoice === "scissor") {
-            playerScore++ 
-            return "You Win, Rock beats Scissor!";
+        else if (playerChoice === "Rock" && computerChoice === "c-Scissor") {
+            return win(playerChoice, computerChoice);
         }
-        else if (playerchoice === "scissor" && computerchoice === "paper") {
-            playerScore++ 
-            return "You Win, Scissor beats Paper!";
+        else if (playerChoice === "Scissor" && computerChoice === "c-Paper") {
+            return win(playerChoice, computerChoice);
         }
-        else if (playerchoice === "paper" && computerchoice === "rock") {
-            playerScore++
-            return "You Win, Paper beats Rock!"; 
+        else if (playerChoice === "Paper" && computerChoice === "c-Rock") {
+            return win(playerChoice, computerChoice);
         }
-        else if (playerchoice === "scissor" && computerchoice === "rock") {
-            computerScore++
-            return "You Lost, Rock beats Scissor!"; 
+        else if (playerChoice === "Scissor" && computerChoice === "c-Rock") {
+            return lose(playerChoice, computerChoice);
         }
-        else if (playerchoice === "paper" && computerchoice === "scissor") {
-            computerScore++
-            return "You Lost, Scissor beats Paper!";
+        else if (playerChoice === "Paper" && computerChoice === "c-Scissor") {
+            return lose(playerChoice, computerChoice);
         }
-        else if (playerchoice === "rock" && computerchoice === "paper") {
-            computerScore++
-            return "You Lost, Paper beats Rocks!";
+        else if (playerChoice === "Rock" && computerChoice === "c-Paper") {
+            return lose(playerChoice, computerChoice);
         }
 }
 
-//Play up to 5 rounds against the computer and point system to determine winner at the end
-function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(i));
-    }
-    if (playerScore > computerScore) {
-            return "You won against a computer! Congrats!";
+function tie () {
+    playerScore_span.innerHTML = playerScore;
+    computerScore_span.innerHTML = computerScore;
+    results_div.innerHTML = "Tie!";
+    return gameOver();
+}
+
+function win (playerChoice, computerChoice) {
+    playerScore++;
+    playerScore_span.innerHTML = playerScore;
+    computerScore_span.innerHTML = computerScore;
+    results_div.innerHTML = playerChoice + " Beats " + computerChoice + ". You Won This Round!";
+    document.getElementById(playerChoice).classList.add('green-glow')
+    setTimeout(function() {document.getElementById(playerChoice).classList.remove('green-glow')}, 1000);
+    document.getElementById(computerChoice).classList.add('red-glow')
+    setTimeout(function() {document.getElementById(computerChoice).classList.remove('red-glow')}, 1000);
+    return gameOver();
+}
+
+function lose (playerChoice, computerChoice) {
+    computerScore++;
+    playerScore_span.innerHTML = playerScore;
+    computerScore_span.innerHTML = computerScore;
+    results_div.innerHTML = computerChoice + " Beats " + playerChoice + ". You Lost This Round!";
+    document.getElementById(playerChoice).classList.add('red-glow')
+    setTimeout(function() {document.getElementById(playerChoice).classList.remove('red-glow')}, 1000);
+    document.getElementById(computerChoice).classList.add('green-glow')
+    setTimeout(function() {document.getElementById(computerChoice).classList.remove('green-glow')}, 1000);
+    return gameOver();
+}
+
+//First to reach 5 points win. Overlay will pop up saying the result and if you want to play again
+function gameOver () {
+    if (playerScore === 5) {
+            modalEl.style.display = "block";
+            modalscoreEl.innerHTML = "You Win!";
         }
-        else if (playerScore < computerScore) {
-            return "You lost to a computer! Try Again!";
+
+        else if (computerScore === 5) {
+            modalEl.style.display = "block";
+            modalscoreEl.innerHTML = "You Lost!";
         }
-        else {
-            return "You tied with the computer! That ain't too bad!";
-        }
-    }
-console.log(game());
+    } 
+
+//Starts the game with start button
+startbuttonEl.addEventListener('click', startGame);
+function startGame () {
+    startmodalEl.style.display = "none";
+}
+
+//Resets the game with restart button
+restartbuttonEl.addEventListener('click', restartGame);
+function restartGame () {
+    playerScore = 0;
+    computerScore = 0;
+    playerScore_span.innerHTML = playerScore;
+    computerScore_span.innerHTML = computerScore;
+    results_div.innerHTML = "Throw Your Hand!";
+    modalEl.style.display = "none";
+    window.stop();
+}
+
+getPlayerChoice ()

@@ -1,0 +1,269 @@
+/*To remove any padding and margin on page unless needed*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    position: relative;
+    min-height: 100%; 
+}
+
+html,body {
+    background-color: rgb(46, 44, 44);
+
+}
+
+.header-container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 40px;
+    color: white;
+}
+
+.header {
+    font-size: 64px;
+    font-family: 'ArcadeClassic', sans-serif;            
+}
+
+.subtext-container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    color: white;
+}
+
+.subtext {
+    font-size: 24px;
+    font-family: 'ArcadeClassic', sans-serif;  
+}
+
+.results-container {
+    display: flex;
+    flex: 1;
+    color: white;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.results {
+    font-size: 32px;
+}
+.scoreBoard {
+    color: white;
+    border: solid;
+    border-radius: 15px;
+    width: 200px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    position: relative;
+}
+
+.badge {
+    background-color: red;
+    padding: 2px;
+}
+#player-label {
+    position: absolute;
+    top: 20px;
+    left: -15px;
+}
+
+#computer-label {
+    position: absolute;
+    top: 20px;
+    right: -30px;
+}
+.card-container {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+}
+
+.card {
+    font-size: 16px;
+    border: solid;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+/*Player images*/
+#Rock {
+    width: 150px;
+    height: 150px;
+    background-image: url(rock.png);
+    background-size: cover;
+    border: 5px solid;
+    border-color: white;
+    margin-top: 25px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    transition-property: transform;
+}
+
+/*Player images*/
+#Paper {
+    width: 150px;
+    height: 150px;
+    background-image: url(paper.png);
+    background-size: cover;
+    border: 5px solid;
+    border-color: white;
+    margin-top: 25px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    transition-property: transform;
+}
+
+/*Player images*/
+#Scissor {
+    width: 150px;
+    height: 150px;
+    background-image: url(scissor.png);
+    background-size: cover;
+    border: 5px solid;
+    border-color: white;
+    margin-top: 25px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    transition-property: transform;
+
+}
+
+/*Transform size after hovering player choices*/
+#Rock:hover, #playerChoice-rock:focus, #playerChoice-rock:active {
+    transform: scale(1.2);
+}
+
+#Paper:hover, #playerChoice-paper:focus, #playerChoice-paper:active {
+    transform: scale(1.2);
+}
+
+#Scissor:hover, #playerChoice-scissor:focus, #playerChoice-scissor:active {
+    transform: scale(1.2);
+}
+
+/*Glow images to distinqush who won the round*/
+.green-glow {
+    border: 6px solid rgb(21, 255, 0);
+    box-shadow: 0 0 25px rgb(21, 255, 0);
+}
+
+.red-glow {
+    border: 6px solid red;
+    box-shadow: 0 0 25px red;
+}
+
+/*Computer images*/
+#c-Rock {
+    width: 150px;
+    height: 150px;
+    background-image: url(rock.png);
+    background-size: cover;
+    border: 5px solid;
+    border-color: white;
+    margin-top: 25px;
+}
+
+/*Computer images*/
+#c-Paper {
+    width: 150px;
+    height: 150px;
+    background-image: url(paper.png);
+    background-size: cover;
+    border: 5px solid;
+    border-color: white;
+    margin-top: 25px;
+}
+
+/*Computer images*/
+#c-Scissor {
+    width: 150px;
+    height: 150px;
+    background-image: url(scissor.png);
+    background-size: cover;
+    border: 5px solid;
+    border-color: white;
+    margin-top: 25px;
+}
+
+/*Everything below is for the "game over screen at the end of the game*/
+.start-container {
+    display: flex;
+    position: fixed;
+    color: white;
+    background-color: rgb(46,44,44);
+    top: 0;
+    left: 0;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-button {
+    background-color: gray;
+    color: white;
+    border: none;
+    margin-top: 5px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    transition-property: transform;
+    font-size: 64px;
+    width: 700px;
+    max-width: 700px;
+}
+
+.start-button:hover, #start-button:focus, #start-button:active {
+    transform: scale(1.2);
+}
+
+/*Everything below is for the "game over screen at the end of the game*/
+.gameover-container {
+    display: none;
+    position: absolute;
+    color: white;
+    background-color: gray;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    max-width: 750px;
+    width: 100%;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.gameover-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.endgame-result {
+    font-size: 32px;
+}
+
+.restart-button {
+    background-color: rgb(46,44,44);
+    color: white;
+    border: none;
+    margin-top: 5px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    transition-property: transform;
+}
+
+.restart-button:hover, #restart-button:focus, #restart-button:active {
+    transform: scale(1.2);
+}
