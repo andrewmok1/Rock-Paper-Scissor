@@ -1,5 +1,5 @@
 # Rock-Paper-Scissor
-A classic game against a computer (3 out of 5 rounds to win)
+A classic game against a computer (First to 5 to win)
 
 JavaScript:
 1. Learned about basic loops (for-loops and if/else if loops)
