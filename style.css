@@ -136,15 +136,15 @@ html,body {
 }
 
 /*Transform size after hovering player choices*/
-#Rock:hover, #playerChoice-rock:focus, #playerChoice-rock:active {
+#Rock:hover {
     transform: scale(1.2);
 }
 
-#Paper:hover, #playerChoice-paper:focus, #playerChoice-paper:active {
+#Paper:hover {
     transform: scale(1.2);
 }
 
-#Scissor:hover, #playerChoice-scissor:focus, #playerChoice-scissor:active {
+#Scissor:hover {
     transform: scale(1.2);
 }
 
