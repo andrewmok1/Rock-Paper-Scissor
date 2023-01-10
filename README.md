@@ -1,7 +1,7 @@
 # Rock-Paper-Scissor
 A classic game against a computer (First to 5 to win)
 
-JavaScript:
+JavaScript/CSS/HTML:
 1. Learned about basic loops (for-loops and if/else if loops)
 2. Created functions and called functions (outputs) to execute/run the game
 3. Optimized user input by making it case-insensitive and made computer choose random game objects (when game was in console)
